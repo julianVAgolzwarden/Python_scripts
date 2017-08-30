@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+# Bastien: This is to show GIT, and how it works
+
 with open('determinantData.txt') as f:
     data = f.readlines()
 
