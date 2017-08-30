@@ -7,7 +7,7 @@ t0 = time.time()
 with open('determinantData.txt') as f:
     content = f.readlines()
 
-n_ci = 500000 - 1
+n_ci = len(content) - 1
 norbs = 16
 nspinorbs = 2*norbs
 nelec = 12
@@ -33,11 +33,11 @@ for i in range(0, n_ci):
                 pair[i] = pair[i] - 1
     pair[i] = pair[i]*2
 
-plt.title('500000')
+plt.title('ci coefficients vs unpaired electrons')
 plt.xlabel('unpaired electrons')
 plt.ylabel('ci coefficients')
-plt.plot(pair, ci_new, 'rs')
-plt.savefig('unpaired.png')
+plt.plot(pair, ci_new, 'gD')
+plt.savefig('pair_final.png')
 plt.show()
 
 print "Total Time:", time.time() - t0
