@@ -27,8 +27,6 @@ for numbers in ci:
     ci_new.append(np.absolute(float(numbers)))
 
 hf_det = dets[0]
-print len(dets)
-exit(0)
 occ = []
 for i in range(1, n_ci):
     mask = np.in1d(hf_det, dets[i])
