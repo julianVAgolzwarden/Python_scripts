@@ -7,23 +7,20 @@ t0 = time.time()
 with open('determinantData.txt') as f:
     content = f.readlines()
 
-n_ci = len(content) - 1
+n_ci = len(cotent) - 1
 norbs = 16
 nspinorbs = 2*norbs
 nelec = 12
 
 dets = np.zeros((n_ci, nelec))
-ci =[]
+ci = np.zeros(n_ci,)
 
 for i in range(1, n_ci + 1):
-    a = content[i].split()
-    ci.append(a[0])
+    ci[i-1] = np.fabs(float(content[i].split()[0]))
     for j in range(nelec):
         dets[i-1, j] = int(content[i].split()[j + 2])
 
-ci_new = []
-for numbers in ci:
-    ci_new.append(np.absolute(float(numbers)))
+ci_new = ci.tolist()
 
 hf_det = dets[0]
 occ = []

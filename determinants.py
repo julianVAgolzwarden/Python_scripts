@@ -1,11 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Bastien: This is to show GIT, and how it works
-# Same thing, again
-
 with open('determinantData.txt') as f:
     data = f.readlines()
+
+n_ci = len(content) - 1
 
 ci = []
 Ed = []
