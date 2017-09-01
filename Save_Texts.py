@@ -24,4 +24,5 @@ for i in range(0, n_ci):
     mask = np.in1d(hf_det, dets[i])
     occ[i] = nelec - np.sum(mask)
 
-np.savetxt('Excitation_levels.txt', occ)
+np.savetxt('Excitation_levels.txt', occ, fmt='%1i')
+print "Total Time:", time.time() - t0
