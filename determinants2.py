@@ -23,16 +23,18 @@ for i in range(1, n_ci + 1):
 ci_new = ci.tolist()
 
 hf_det = dets[0]
-occ = []
+occ = np.zeros(n_ci,)
 for i in range(0, n_ci):
     mask = np.in1d(hf_det, dets[i])
-    occ.append(nelec - np.sum(mask))
+    occ[i] = int(nelec - np.sum(mask))
+
+occ_new = occ.tolist()
 
 plt.title('ci coefficients vs excitation level')
 plt.xlabel('excitation level')
 plt.ylabel('ci coefficients')
 plt.axis([0, 10, -0.05, 0.7])
-plt.plot(occ, ci_new, 'rs')
+plt.plot(occ_new, ci_new, 'rs')
 plt.savefig('occupation_final.png')
 plt.show()
 
