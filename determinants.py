@@ -4,8 +4,6 @@ import numpy as np
 with open('determinantData.txt') as f:
     data = f.readlines()
 
-n_ci = len(content) - 1
-
 ci = []
 Ed = []
 for line in data:
