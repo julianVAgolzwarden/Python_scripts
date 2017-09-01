@@ -12,21 +12,19 @@ norbs = 16
 nspinorbs = 2*norbs
 nelec = 12
 
-Ed = np.zeros(n_ci,)
+dets = np.zeros((n_ci, nelec))
 
 for i in range(1, n_ci + 1):
-    Ed[i-1] = float(content[i].split()[1])
+    for j in range(nelec):
+        dets[i-1, j] = int(content[i].split()[j + 2])
 
-np.savetxt('Determinant_Energies.txt', Ed)
-print "Total Time:", time.time() - t0
-exit(0)
-
-
-hf_det = dets[0]
-occ = np.zeros(n_ci, dtype = np.int64)
+pair = np.full(n_ci, 6)
 for i in range(0, n_ci):
-    mask = np.in1d(hf_det, dets[i])
-    occ[i] = nelec - np.sum(mask)
+    for j in range(nelec - 1):
+        for k in range(0 , 31, 2):
+            if dets[i, j] == k and dets[i, j + 1] == k + 1:
+                pair[i] = pair[i] - 1
+    pair[i] = pair[i]*2
 
-np.savetxt('Excitation_levels.txt', occ, fmt='%1i')
+np.savetxt('unpaired_electrons.txt', pair, fmt='%1i')
 print "Total Time:", time.time() - t0
