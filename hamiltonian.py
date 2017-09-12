@@ -16,14 +16,6 @@ for x in range(1, n_hamiltonian + 1):
     for y in range(3):
         hij[x-1, y] = float(content[x].split()[y])
 
-def ha(A):
-    for x in range(len(hij)):
-        mask = np.in1d(A, hij[x])
-        if np.sum(mask) == 2:
-            return x
-        else:
-            return n_hamiltonian
-
 #access Determinants
 with open('occupation.txt') as O:
     data = O.readlines()
@@ -58,6 +50,14 @@ def a_dagger(L, m):
 paths = np.zeros(n_ij,)
 hf_det = dets[0]
 dets_new = dets.tolist()
+
+def ha(A):
+    for x in range(len(hij)):
+        mask = np.in1d(A, hij[x])
+        if np.sum(mask) == 2:
+            return x
+        else:
+            return n_hamiltonian
 
 #function finding the Determinant
 def find_index(z):
