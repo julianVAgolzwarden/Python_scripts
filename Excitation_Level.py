@@ -7,7 +7,7 @@ t0 = time.time()
 with open('determinantData.txt') as f:
     content = f.readlines()
 
-n_ci = len(cotent) - 1
+n_ci = len(content) - 1
 norbs = 16
 nspinorbs = 2*norbs
 nelec = 12
@@ -28,6 +28,8 @@ for i in range(0, n_ci):
     mask = np.in1d(hf_det, dets[i])
     occ[i] = int(nelec - np.sum(mask))
 
+print mask
+exit(0)
 occ_new = occ.tolist()
 
 plt.title('ci coefficients vs excitation level')
