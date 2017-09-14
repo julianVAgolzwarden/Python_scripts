@@ -24,19 +24,21 @@ for i in range(n_ci):
     Ed[i] = items[i]
     occ[i] = objects[i]
 
-PT = np.zeros(n_ci,)
-for j in range(0, n_ci):
-    PT[j] = occ[j]/(Ed[0] - Ed[j])
+PT = np.zeros(n_ci-1,)
+for j in range(1, n_ci):
+    PT[j-1] = occ[j]/(Ed[0] - Ed[j])
 
 ci_new = ci.tolist()
 PT_new = PT.tolist()
 ci_new.pop(0)
-PT_new.pop(0)
+
+np.savetxt('PT_approximation.txt', PT, fmt='%1f')
+exit(0)
 
 plt.title('PT approximation')
-plt.xlabel(r'excitation level/deltaEd')
+plt.xlabel(r'excitation level/$\Delta$Ed')
 plt.ylabel('ci coefficients')
-plt.plot(PT_new, ci_new, 'm^')
+plt.plot(PT_new, ci_new, 'm.')
 plt.savefig('PT_approximation.png')
 plt.show()
 
