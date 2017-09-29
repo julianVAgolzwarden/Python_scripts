@@ -7,16 +7,16 @@ from sklearn.gaussian_process.kernels import DotProduct, WhiteKernel, ConstantKe
 with open('ci_coefficients.txt') as C:
     content = C.readlines()
 
-y = np.zeros((1000-1, 1))
-for i in range(1, 1000):
-    y[i-1] = float(content[i])
+y = np.zeros((1000, 1))
+for i in range(1000):
+    y[i] = float(content[i])
 
 
-with open('PT_approximation.txt') as P:
-    data = P.readlines()
+with open('Determinant_Energies.txt') as D:
+    data = D.readlines()
 
-X = np.zeros((1000-1, 1))
-for j in range(1000-1):
+X = np.zeros((1000, 1))
+for j in range(1000):
     X[j] = float(data[j])
 
 #gaussian process
@@ -29,10 +29,10 @@ gp.fit(X, y)
 y_pred, sigma = gp.predict(x, return_std=True)
 
 plt.title(r'Dot Product, $\sigma_{0}$ = 1')
-plt.plot(X, y, 'm.', label='values')
+plt.plot(X, y, 'b.', label='values')
 plt.plot(x, y_pred, 'k-', label='prediction')
-plt.xlabel(r'excitation level/$\Delta$Ed')
+plt.xlabel('Determinant Energy')
 plt.ylabel('ci coefficients')
 plt.legend(loc='upper right')
-plt.savefig('gaussian_PT_DP2.png')
+plt.savefig('gaussian_de_DP.png')
 plt.show()
